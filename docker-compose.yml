@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: weather_db
+    environment:
+      POSTGRES_DB: weather
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: weather_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: ./app
+    container_name: weather_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://weather_user:weather_pass@db:5432/weather
+
+volumes:
+  postgres_data:
