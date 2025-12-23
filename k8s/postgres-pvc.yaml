@@ -4,8 +4,9 @@ metadata:
   name: postgres-pvc
   namespace: mv-makarov-1304
 spec:
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi
