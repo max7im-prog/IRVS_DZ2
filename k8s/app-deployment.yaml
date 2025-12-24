@@ -16,23 +16,8 @@ spec:
       containers:
         - name: weather-app
           image: nogagorilli/weather-logger:latest
-          env:
-            - name: DATABASE_URL
-              value: "postgresql://user:password@postgres-service:5432/weather"
           ports:
             - containerPort: 5000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: weather-app-service
-  namespace: mv-makarov-1304
-spec:
-  type: NodePort
-  selector:
-    app: weather-app
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      nodePort: 30000
+          env:
+            - name: DATABASE_URL
+              value: postgresql://user:password@postgres:5432/weather
