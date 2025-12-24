@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: weather-app
-          image: weather-logger
+          image: nogagorilli/weather-logger:latest
           env:
             - name: DATABASE_URL
               value: "postgresql://user:password@postgres-service:5432/weather"
